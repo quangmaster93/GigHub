@@ -1,0 +1,19 @@
+﻿@using System.Globalization
+@model IEnumerable<GigHub.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Attending";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Artists you are following</h2>
+
+<ul class="margin-top-to-head">
+    @foreach (var artist in Model)
+    {
+        <li>
+            <a>@artist.Name</a>
+        </li>
+    }
+</ul>
+
+

@@ -1,0 +1,145 @@
+﻿@color_1: red;
+@color_2: white;
+@color_3: #333;
+@background_color_1: red;
+@background_color_2: #f7f7f7;
+
+body {
+	padding-top: 80px;
+	padding-bottom: 20px;
+}
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.dl-horizontal {
+	dt {
+		white-space: normal;
+	}
+}
+input {
+	max-width: 280px;
+}
+select {
+	max-width: 280px;
+}
+textarea {
+	max-width: 280px;
+}
+span.field-validation-error {
+	color: @color_1;
+	font-weight: bold;
+}
+.gigs {
+	list-style: none;
+	>li {
+		position: relative;
+		margin-bottom: 30px;
+		.details {
+			position: absolute;
+			top: 0;
+			left: 70px;
+			width: 210px;
+			.artist {
+				font-weight: bold;
+				.btn {
+					padding: 5px 0px;
+				}
+			}
+			.genre {
+				font-size: 15px;
+			}
+		}
+		.date {
+			background-color: @background_color_1;
+			text-align: center;
+			color: @color_2;
+			width: 60px;
+			border-radius: 8px;
+			.month {
+				text-transform: uppercase;
+				font-size: 14px;
+				font-weight: bold;
+				padding: 2px;
+			}
+			.day {
+				background-color: @background_color_2;
+				color: @color_3;
+				font-size: 20px;
+				padding: 6px;
+			}
+		}
+		.action {
+			display: none;
+		}
+		&:hover {
+			.action {
+				display: inline;
+				font-size: 15px;
+			}
+		}
+	}
+}
+.notifications {
+	>a {
+		.badge {
+			position: absolute;
+			top: 8px;
+			right: -1px;
+			background: rgba(183, 24, 23, 0.78);
+		}
+	}
+    @media (min-width: 768px) {
+        ul.notifications-menu {
+            right: -60px;
+            left: auto;
+            padding-top: 0px;
+            background-color: #F8F9F9;
+            min-width: 330px;
+            text-align: justify;
+            border-radius:  0 0 10px 10px;
+            .js-notification-message {
+	            >li {
+		            padding: 5px;
+		            border-bottom: #ddd solid 1px;
+		            &:last-child {
+			            border-bottom: none;
+		            }
+                    .highlight {
+	                    font-weight: bold;
+                    }
+	            }
+            }
+        }
+    }
+}
+
+.btn-gigform {
+	font-size: 17px;
+	padding: 7px 20px;
+}
+
+.margin-top-to-head {
+	margin-top: 50px;
+}
+
+.search{
+    margin-left:40px;
+    .btn-default{
+        border:none;
+        background:#FDEBD0;
+    }
+    .btn-default:hover{
+    background-color:#F5CBA7;
+    }
+    .form-control{
+        border: 1px solid #FDEBD0 ;
+        height: 32px ;
+        font-size:13px;
+        box-shadow:none;
+    }
+    .form-control:focus{
+        border-color:#FDEBD0;
+    }
+}
+

@@ -1,0 +1,70 @@
+﻿@using System.Globalization
+@model GigHub.ViewModels.IndexHomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+
+    //khong can su dung
+    bool isAuthentiacated =(bool)ViewBag.IsAuthenticated;
+}
+
+<h2>Upcoming Gigs </h2>
+
+@using (Html.BeginForm("Index","Home",FormMethod.Get, new {@class="search"}))
+{
+    <div class="input-group" style="width: 280px">
+        @Html.TextBox("query","",new {@class="form-control", placeholder = "Search by Artist, Genre or Location..." })
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </div>
+    </div>
+}
+
+<ul class="gigs margin-top-to-head">
+    @foreach ( var gig in Model.Gigs)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM", CultureInfo.CreateSpecificCulture("en-US"))
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d  ")
+                </div>
+            </div>
+            <div class="details">
+                
+                <div class="artist">
+                    @Html.RouteLink(@gig.Artist.Name,new {controller="Gigs",action="Detail",gigId=gig.Id})
+                </div>
+
+                <div class="genre" style="clear: both">
+                    @gig.Genre.Name
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (@Model.AttendingGigs.Contains(gig.Id))
+                        {
+                            <button data-gigId=@gig.Id class="btn btn-info btn-sm pull-right js-toggle-attendance">Going</button>
+                        }
+                        else
+                        {
+                            <button data-gigId=@gig.Id class="btn btn-default btn-sm pull-right js-toggle-attendance">Going?</button>
+                        }
+
+                    }
+                </div>
+
+            </div>
+        </li>
+    }
+</ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            GigsController.attendanceToggle();
+        })
+    </script>
+}

@@ -1,0 +1,98 @@
+﻿@using System.Globalization
+@model IEnumerable<GigHub.Models.Gig>
+@{
+    ViewBag.Title = "Mine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Upcoming Gigs</h2>
+<ul class="gigs margin-top-to-head">
+    @foreach (var gig in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM", CultureInfo.CreateSpecificCulture("en-US"))
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d  ")
+                </div>
+            </div>
+            <div class="details">
+
+                <div class="artist">
+                    @gig.Venue
+                </div>
+
+                <div class="genre" style="clear: both">
+                    @gig.Genre.Name
+                </div>
+                
+                <div class="action">
+                    <a href="@Url.Action("Edit","Gigs",new { gigId=@gig.Id})" class="btn btn-primary btn-sm">Edit</a>
+
+                    @if (gig.IsCanceled)
+                    {
+                        <a href="#" class="js-cancel-gig btn btn-danger btn-sm" data-gigId=@gig.Id>Canceled</a>
+                    }
+                    else
+                    {
+                        <a href="#" class="js-cancel-gig btn btn-default btn-sm" data-gigId=@gig.Id>Cancel</a>
+                    }
+                    
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+@section scripts
+{
+    <script>
+        GigsController.cancelToggle();
+        //$(".js-cancel-gig").click(function(e) {
+        //    var link = $(e.target);
+        //    bootbox.dialog({
+        //        message: "Are you sure you want to cancel this gig?",
+        //        title:"Confirm",
+        //        buttons: {
+        //            No: {
+        //                label: 'No',
+        //                className: 'btn-default'
+        //            },
+        //            Yes: {
+        //                label: 'Yes',
+        //                className: 'btn-danger',
+        //                callback: function (result) {
+        //                    $.ajax(
+        //                            {
+        //                                url: "/api/gigs/cancel" + link.attr("data-gigId"),
+        //                                method: "Delete"
+        //                            }
+        //                        )
+        //                        .done(function () {
+        //                            link.parents("li").fadeOut(function () {
+        //                                $(this).remove();
+        //                            });
+        //                        })
+        //                        .fail(function () {
+        //                            alert("Something failed!");
+        //                        });
+        //                }
+        //            }
+        //        }
+        //    });
+        //});
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+

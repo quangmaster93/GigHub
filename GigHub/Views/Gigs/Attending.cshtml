@@ -1,0 +1,56 @@
+﻿@using System.Globalization
+@model IEnumerable<GigHub.Models.Gig>
+@{
+    ViewBag.Title = "Attending";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Gigs you are attending</h2>
+
+<ul class="gigs margin-top-to-head">
+    @foreach (var gig in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM", CultureInfo.CreateSpecificCulture("en-US"))
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d  ")
+                </div>
+            </div>
+            <div class="details">
+                <div class="artist">
+                    @Html.RouteLink(@gig.Artist.Name, new { controller = "Gigs", action = "Detail", gigId = gig.Id })
+                </div>
+                <div class="genre" style="clear: both">
+                    @gig.Genre.Name
+                    @if (gig.IsCanceled)
+                    {
+                        <span class="label label-warning pull-right">Canceled</span>
+                    }
+                </div>
+               
+                
+            </div>
+           
+        </li>
+    }
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

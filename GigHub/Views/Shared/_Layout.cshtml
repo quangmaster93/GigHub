@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700|Open+Sans:400,700" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("GigHub", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Add a Gig", "Create", "Gigs")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/lib")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+
+            $.get("/api/notifications/getCount",
+                function(count) {
+
+                    if (count == 0) {
+                        $(".js-notifications-count")
+                            .addClass("hide");
+                        return;
+                    }
+
+                    $(".js-notifications-count")
+                        .text(count)
+                        .addClass("animated bounceInDown");
+                });
+
+            $.get("/api/notifications/getNewNotifications", function (notifications) {
+
+                var n = notifications.length;
+                var html = "";
+
+                for (var i = 0; i < n ; i++) {
+                    var item = notifications[i];
+                    var message = "<span class='highlight'>" + item.Gig.Artist.Name + "</span>";
+                    if (item.Type == 1) {
+                            message = message +
+                            " has canceled the gig at " +
+                            item.Gig.Venue +
+                            " and at " +
+                            moment(item.Gig.DateTime).format("Do MMM HH:mm");
+                    }
+
+                    if (item.Type == 2) {
+
+                        if (item.OriginalDateTime != null && item.OriginalVenue != null) {
+                            message = message +
+                                " has changed venue and date/time of the gig from " +
+                                item.OriginalVenue +
+                                " and " +
+                                moment(item.OriginalDateTime).format("Do MMM HH:mm") +
+                                " to "+
+                                item.Gig.Venue +
+                                " and " +
+                                moment(item.Gig.DateTime).format("Do MMM HH:mm");
+                        }
+
+                        if (item.OriginalDateTime == null && item.OriginalVenue != null) {
+                            message = message +
+                                " has changed venue of the gig from " +
+                                item.OriginalVenue +
+                                " to " +
+                                item.Gig.Venue;
+                        }
+
+                        if (item.OriginalDateTime != null && item.OriginalVenue == null) {
+                            message = message +
+                                " has changed date/time of the gig from " +
+                                moment(item.OriginalDateTime).format("Do MMM HH:mm") +
+                                " to " +
+                                moment(item.Gig.DateTime).format("Do MMM HH:mm");;
+                        }
+                    }
+
+                    html = html + "<li>" + message + "</li>";
+                }
+
+                $(".js-notification-message").html(html);
+            });
+
+            $(".notifications").click(function() {
+
+                $.post("/api/notifications/markAsRead",
+                    function() {
+                        $(".js-notifications-count").html("");
+                    });
+            });
+        })
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

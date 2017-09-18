@@ -1,0 +1,125 @@
+﻿body {
+  padding-top: 80px;
+  padding-bottom: 20px;
+}
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.dl-horizontal dt {
+  white-space: normal;
+}
+input {
+  max-width: 280px;
+}
+select {
+  max-width: 280px;
+}
+textarea {
+  max-width: 280px;
+}
+span.field-validation-error {
+  color: red;
+  font-weight: bold;
+}
+.gigs {
+  list-style: none;
+}
+.gigs > li {
+  position: relative;
+  margin-bottom: 30px;
+}
+.gigs > li .details {
+  position: absolute;
+  top: 0;
+  left: 70px;
+  width: 210px;
+}
+.gigs > li .details .artist {
+  font-weight: bold;
+}
+.gigs > li .details .artist .btn {
+  padding: 5px 0px;
+}
+.gigs > li .details .genre {
+  font-size: 15px;
+}
+.gigs > li .date {
+  background-color: red;
+  text-align: center;
+  color: white;
+  width: 60px;
+  border-radius: 8px;
+}
+.gigs > li .date .month {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px;
+}
+.gigs > li .date .day {
+  background-color: #f7f7f7;
+  color: #333;
+  font-size: 20px;
+  padding: 6px;
+}
+.gigs > li .action {
+  display: none;
+}
+.gigs > li:hover .action {
+  display: inline;
+  font-size: 15px;
+}
+.notifications > a .badge {
+  position: absolute;
+  top: 8px;
+  right: -1px;
+  background: rgba(183, 24, 23, 0.78);
+}
+@media (min-width: 768px) {
+  .notifications ul.notifications-menu {
+    right: -60px;
+    left: auto;
+    padding-top: 0px;
+    background-color: #F8F9F9;
+    min-width: 330px;
+    text-align: justify;
+    border-radius: 0 0 10px 10px;
+  }
+  .notifications ul.notifications-menu .js-notification-message > li {
+    padding: 5px;
+    border-bottom: #ddd solid 1px;
+  }
+  .notifications ul.notifications-menu .js-notification-message > li:last-child {
+    border-bottom: none;
+  }
+  .notifications ul.notifications-menu .js-notification-message > li .highlight {
+    font-weight: bold;
+  }
+}
+.btn-gigform {
+  font-size: 17px;
+  padding: 7px 20px;
+}
+.margin-top-to-head {
+  margin-top: 50px;
+}
+.search {
+  margin-left: 40px;
+}
+.search .btn-default {
+  border: none;
+  background: #FDEBD0;
+}
+.search .btn-default:hover {
+  background-color: #F5CBA7;
+}
+.search .form-control {
+  border: 1px solid #FDEBD0 ;
+  height: 32px ;
+  font-size: 13px;
+  box-shadow: none;
+}
+.search .form-control:focus {
+  border-color: #FDEBD0;
+}

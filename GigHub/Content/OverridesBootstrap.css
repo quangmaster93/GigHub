@@ -1,0 +1,151 @@
+﻿body {
+}
+
+/*=================navbvar=================*/
+.navbar-inverse {
+    background-color: #ff4342;
+    border-color: #ff4342;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+        /*========dropdown-menu background================*/
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: rgba(239, 45, 44, 0.55);
+}
+
+.dropdown-menu{
+    box-shadow:none;
+}
+
+        /*==========caret in dropdown-list==========*/
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+}
+
+/*==========navbar-brand===========*/
+.navbar-brand {
+    font-weight:700;
+}
+
+/*===========font-size===========*/
+body{
+    font-size:17px;
+}
+
+
+.form-control{
+    font-size:17px;
+}
+
+/*==========font-family============*/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+}
+
+
+/*=========margin-bottom form-group============*/
+.form-group {
+    margin-bottom: 20px;
+}
+
+/*==========form-control shape============*/
+.form-control {    
+    -ms-border-radius:9px;
+}
+
+
+/*===========button==============*/
+.btn { 
+    -ms-border-radius:9px;
+    border-radius:9px;
+}
+
+
+
+/*============form-control:focus===========*/
+.form-control:focus{
+   border-color:#2196f3;
+   box-shadow:none;
+}
+
+
+.dropdown-header {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #FBEEE6  ;
+    color: #D35400;
+}
+
+.dropdown {
+    height: 54px;
+}
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+        padding-top: 17px;
+        padding-bottom: 17px;
+    }
+}
+
+.btn:focus {
+    outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
